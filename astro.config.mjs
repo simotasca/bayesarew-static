@@ -1,9 +1,6 @@
-import { defineConfig } from 'astro/config';
-
-// https://astro.build/config
-import mdx from "@astrojs/mdx";
+import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [mdx()]
+  site: "https://www.bayesarew.it",
 });
