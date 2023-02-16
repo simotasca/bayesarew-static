@@ -1,0 +1,631 @@
+---
+import Link from "../components/Link.astro";
+import HrefLang from "../components/HrefLang.astro";
+import { DONATION_URL } from "../lib/constants";
+const { language, t, baseUrl } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={language} prefix="og: https://ogp.me/ns#">
+  <head>
+    <!-- BASE -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{t.headTitle}</title>
+    <meta name="description" content={t.metaDescription} />
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <!-- Open Graph -->
+    <meta property="og:title" content={t.opengraphTitle} />
+    <meta property="og:description" content={t.opengraphDescription} />
+    <meta property="og:site_name" content="BayeSaRew" />
+    <meta
+      property="og:image"
+      content="http://www.bayesarew.com/resources/img/opengraph.png"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image:alt" content={t.twitterContent} />
+    <!-- I18N -->
+    <HrefLang language={language} url={baseUrl} />
+    <!-- FONTS -->
+    <link
+      rel="preload"
+      href="/resources/font/oswald/oswald-v47-latin-700.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/index.min.css" />
+    <!-- JS -->
+    <script
+      is:inline
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"
+    ></script>
+    <script
+      is:inline
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js"
+    ></script>
+  </head>
+
+  <body>
+    <section class="main-container">
+      <!-- <img id="main-background" src="/resources/img/foto/schiena.jpg" alt="" /> -->
+      <img id="main-background" alt="" />
+      <object
+        id="main-impronta"
+        class="main-impronta"
+        type="image/svg+xml"
+        data="/resources/img/impronta.svg"></object>
+
+      <img
+        id="main-logo"
+        class="logo"
+        src="/resources/img/logo2.svg"
+        alt="logo"
+      />
+      <div id="logo-check" class="logo"></div>
+
+      <nav class="menu">
+        <a class="menu-item" set:html={t.menu1} />
+        <Link
+          class="menu-item"
+          href="/chi-siamo"
+          language={language}
+          language={language}
+          set:html={t.menu2}
+        />
+        <Link
+          class="menu-item"
+          href="/progetti"
+          language={language}
+          set:html={t.menu3}
+        />
+        <div id="flags">
+          <a href="/">
+            <img src="/resources/img/bandiere/it.jpg" alt="current-language" />
+          </a>
+          <a href="/fr">
+            <img src="/resources/img/bandiere/fr.jpg" alt="current-language" />
+          </a>
+        </div>
+      </nav>
+
+      <div class="hero">
+        <h1 class="title">BAYE <br /> SA REW</h1>
+        <h2 class="subtitle" set:html={t.titoloSlogan} />
+        <div class="carousel">
+          <div class="carousel__img">
+            <picture>
+              <source
+                srcset="/resources/img/foto/uomini_seduti.webp"
+                type="image/webp"
+              />
+              <source
+                srcset="/resources/img/foto/uomini_seduti.jpg"
+                type="image/jpeg"
+              />
+              <img
+                class="img-modal__toggler"
+                src="/resources/img/foto/uomini_seduti.jpg"
+                alt="uomini seduti"
+                loading="lazy"
+              />
+            </picture>
+          </div>
+          <div class="carousel__img">
+            <picture>
+              <source
+                srcset="/resources/img/foto/donna_seduta.webp"
+                type="image/webp"
+              />
+              <source
+                srcset="/resources/img/foto/donna_seduta.jpg"
+                type="image/jpeg"
+              />
+              <img
+                class="img-modal__toggler"
+                src="/resources/img/foto/donna_seduta.jpg"
+                alt="donna seduta"
+                loading="lazy"
+              />
+            </picture>
+          </div>
+          <div class="carousel__img">
+            <picture>
+              <source
+                srcset="/resources/img/foto/due_lavoratori.webp"
+                type="image/webp"
+              />
+              <source
+                srcset="/resources/img/foto/due_lavoratori.jpg"
+                type="image/jpeg"
+              />
+              <img
+                class="img-modal__toggler"
+                src="/resources/img/foto/due_lavoratori.jpg"
+                alt="due lavoratori"
+                loading="lazy"
+              />
+            </picture>
+          </div>
+        </div>
+      </div>
+
+      <div class="main-social">
+        <a
+          href="https://www.facebook.com/Baye-Sa-Rew-Villaggio-di-Gapassel-103300722295945/"
+          target="_blank"
+        >
+          <img src="/resources/img/social/fb.svg" alt="FB" />
+        </a>
+        <a href="https://www.instagram.com/baye_sa_rew/" target="_blank">
+          <img src="/resources/img/social/ig.svg" alt="IG" />
+        </a>
+      </div>
+
+      <div class="main-dona">
+        <h2>
+          <a href={DONATION_URL} target="_blank" set:html={t.tastoDona} />
+        </h2>
+      </div>
+    </section>
+
+    <section class="dona-container">
+      <img
+        class="background-logo"
+        src="/resources/img/impronta-africa.svg"
+        alt=""
+        loading="lazy"
+        width=""
+        height=""
+      />
+
+      <header class="dona-header">
+        <div>
+          <img src="/resources/img/logo3.svg" alt="logo" loading="lazy" />
+        </div>
+        <!-- <div><img src="/resources/img/logo-alex.svg" alt="logo" /></div> -->
+        <nav class="menu">
+          <a class="menu-item" set:html={t.menu1} />
+          <Link
+            class="menu-item"
+            href="/chi-siamo"
+            language={language}
+            set:html={t.menu2}
+          />
+          <Link
+            class="menu-item"
+            href="/progetti"
+            language={language}
+            set:html={t.menu3}
+          />
+        </nav>
+        <h2 class="montserrat m-0" set:html={t.titolo1} />
+      </header>
+
+      <div class="dona-content">
+        <div class="flex p-2 pt-0 g-1">
+          <div class="w-70">
+            <picture>
+              <source
+                srcset="/resources/img/foto/bambini.webp"
+                type="image/webp"
+              />
+              <source
+                srcset="/resources/img/foto/bambini.jpg"
+                type="image/jpeg"
+              />
+              <img
+                class="w-100"
+                src="/resources/img/foto/bambini.jpg"
+                alt="bambini"
+              />
+            </picture>
+          </div>
+          <div class="w-30">
+            <div class="aiutaci-p h5">
+              <div class="left-in">
+                <i set:html={t.paragrafo1} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="align-center">
+          <Link
+            class="btn btn-outline h5"
+            href="/progetti"
+            language={language}
+            set:html={t.tastoProgetti}
+          />
+          <a
+            class="btn btn-yellow h5"
+            href={DONATION_URL}
+            target="_blank"
+            set:html={t.tastoDona}
+          />
+        </div>
+        <div class="flex flex-sm-reverse p-2 g-1">
+          <div class="w-50">
+            <div class="aiutaci-p aiutaci-p-2 h5">
+              <div class="right-in">
+                <i set:html={t.paragrafo2} />
+              </div>
+            </div>
+          </div>
+          <div class="w-50 video video-container">
+            <video
+              class="w-100"
+              src="/resources/video/giocano_sulla_sabbia.mp4"
+              autoplay
+              loop
+              muted
+              playsinline></video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="foto-container">
+      <img
+        src="/resources/img/impronta-albero.svg"
+        class="background-logo background-logo-foto"
+        loading="lazy"
+      />
+
+      <nav class="menu">
+        <a class="menu-item" set:html={t.menu1} />
+        <Link
+          class="menu-item"
+          href="/chi-siamo"
+          language={language}
+          set:html={t.menu2}
+        />
+        <Link
+          class="menu-item"
+          href="/progetti"
+          language={language}
+          set:html={t.menu3}
+        />
+      </nav>
+
+      <div class="flex my-2">
+        <div class="la-line"></div>
+        <h2 set:html={t.titolo2} />
+      </div>
+
+      <div class="photo-columns">
+        <div class="double-col">
+          <div class="elem img-elem img-elem--active">
+            <picture>
+              <source
+                srcset="/resources/img/foto/convivio.webp"
+                type="image/webp"
+              />
+              <source
+                srcset="/resources/img/foto/convivio.jpg"
+                type="image/jpeg"
+              />
+              <img
+                class="img-modal__toggler w-100"
+                src="/resources/img/foto/convivio.jpg"
+                alt="convivio"
+                loading="lazy"
+              />
+            </picture>
+          </div>
+          <div class="elem hide-on-desktop">
+            <p class="h5" set:html={t.paragrafo3} />
+          </div>
+          <div class="photo-columns">
+            <div class="col-1">
+              <div class="elem elem-logo">
+                <img
+                  class="img-modal__toggler w-100"
+                  src="/resources/img/logo.svg"
+                  alt=""
+                  loading="lazy"
+                />
+              </div>
+              <div class="elem img-elem">
+                <picture>
+                  <source
+                    srcset="/resources/img/foto/muratore.webp"
+                    type="image/webp"
+                  />
+                  <source
+                    srcset="/resources/img/foto/muratore.jpg"
+                    type="image/jpeg"
+                  />
+                  <img
+                    class="img-modal__toggler w-100"
+                    src="/resources/img/foto/muratore.jpg"
+                    alt="muratore"
+                    loading="lazy"
+                  />
+                </picture>
+              </div>
+              <div class="elem img-elem hide-on-desktop">
+                <picture>
+                  <source
+                    srcset="/resources/img/foto/foto_di_gruppo.webp"
+                    type="image/webp"
+                  />
+                  <source
+                    srcset="/resources/img/foto/foto_di_gruppo.jpg"
+                    type="image/jpeg"
+                  />
+                  <img
+                    class="img-modal__toggler w-100"
+                    src="/resources/img/foto/foto_di_gruppo.jpg "
+                    alt="foto di gruppo"
+                    loading="lazy"
+                  />
+                </picture>
+              </div>
+              <div class="elem img-elem hide-on-desktop">
+                <picture>
+                  <source
+                    srcset="/resources/img/foto/casetta.webp"
+                    type="image/webp"
+                  />
+                  <source
+                    srcset="/resources/img/foto/casetta.jpg"
+                    type="image/jpeg"
+                  />
+                  <img
+                    class="img-modal__toggler w-100"
+                    src="/resources/img/foto/casetta.jpg"
+                    alt="casetta"
+                    loading="lazy"
+                  />
+                </picture>
+              </div>
+            </div>
+
+            <div class="col-2">
+              <div class="elem img-elem">
+                <picture>
+                  <source
+                    srcset="/resources/img/foto/ragazzi.webp"
+                    type="image/webp"
+                  />
+                  <source
+                    srcset="/resources/img/foto/ragazzi.jpg"
+                    type="image/jpeg"
+                  />
+                  <img
+                    class="img-modal__toggler w-100"
+                    src="/resources/img/foto/ragazzi.jpg"
+                    alt="ragazzi"
+                    loading="lazy"
+                  />
+                </picture>
+              </div>
+              <div class="elem img-elem">
+                <picture>
+                  <source
+                    srcset="/resources/img/foto/tre_bambini.webp"
+                    type="image/webp"
+                  />
+                  <source
+                    srcset="/resources/img/foto/tre_bambini.jpg"
+                    type="image/jpeg"
+                  />
+                  <img
+                    class="img-modal__toggler w-100"
+                    src="/resources/img/foto/tre_bambini.jpg"
+                    alt="tre bambini"
+                    loading="lazy"
+                  />
+                </picture>
+              </div>
+              <div class="elem">
+                <p class="h5 m-0" set:html={t.paragrafo4} />
+                <p class="float-right m-0">
+                  <span
+                    class="text-yellow"
+                    set:html={`- ${t.dettoAfricano} -`}
+                  />
+                </p>
+              </div>
+              <div class="elem img-elem hide-on-desktop">
+                <picture>
+                  <source
+                    srcset="/resources/img/foto/asini.webp"
+                    type="image/webp"
+                  />
+                  <source
+                    srcset="/resources/img/foto/asini.jpg"
+                    type="image/jpeg"
+                  />
+                  <img
+                    class="img-modal__toggler w-100"
+                    src="/resources/img/foto/asini.jpg"
+                    alt="asini"
+                    loading="lazy"
+                  />
+                </picture>
+              </div>
+              <div class="elem img-elem hide-on-desktop">
+                <picture>
+                  <source
+                    srcset="/resources/img/foto/uomini_seduti.webp"
+                    type="image/webp"
+                  />
+                  <source
+                    srcset="/resources/img/foto/uomini_seduti.jpg"
+                    type="image/jpeg"
+                  />
+                  <img
+                    class="img-modal__toggler w-100"
+                    src="/resources/img/foto/uomini_seduti.jpg"
+                    alt="uomini seduti"
+                    loading="lazy"
+                  />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-3 hide-on-mobile">
+          <div class="elem">
+            <p class="h5" set:html={t.paragrafo3} />
+          </div>
+          <div class="elem img-elem">
+            <picture>
+              <source
+                srcset="/resources/img/foto/foto_di_gruppo.webp"
+                type="image/webp"
+              />
+              <source
+                srcset="/resources/img/foto/foto_di_gruppo.jpg"
+                type="image/jpeg"
+              />
+              <img
+                class="img-modal__toggler w-100"
+                src="/resources/img/foto/foto_di_gruppo.jpg "
+                alt="foto di gruppo"
+                loading="lazy"
+              />
+            </picture>
+          </div>
+          <div class="elem img-elem">
+            <picture>
+              <source
+                srcset="/resources/img/foto/casetta.webp"
+                type="image/webp"
+              />
+              <source
+                srcset="/resources/img/foto/casetta.jpg"
+                type="image/jpeg"
+              />
+              <img
+                class="img-modal__toggler w-100"
+                src="/resources/img/foto/casetta.jpg"
+                alt="casetta"
+                loading="lazy"
+              />
+            </picture>
+          </div>
+          <div class="elem img-elem">
+            <picture>
+              <source
+                srcset="/resources/img/foto/asini.webp"
+                type="image/webp"
+              />
+              <source
+                srcset="/resources/img/foto/asini.jpg"
+                type="image/jpeg"
+              />
+              <img
+                class="img-modal__toggler w-100"
+                src="/resources/img/foto/asini.jpg"
+                alt="asini"
+                loading="lazy"
+              />
+            </picture>
+          </div>
+          <div class="elem img-elem">
+            <picture>
+              <source
+                srcset="/resources/img/foto/uomini_seduti.webp"
+                type="image/webp"
+              />
+              <source
+                srcset="/resources/img/foto/uomini_seduti.jpg"
+                type="image/jpeg"
+              />
+              <img
+                class="img-modal__toggler w-100"
+                src="/resources/img/foto/uomini_seduti.jpg"
+                alt="uomini seduti"
+                loading="lazy"
+              />
+            </picture>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contacts-container">
+      <div class="contacts flex">
+        <div class="contacts-col contacts-logo w-50">
+          <img
+            class="w-100"
+            src="/resources/img/logo2.svg"
+            alt="logo"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="contacts-col w-50">
+          <h3 set:html={t.titolo1Contatti} />
+          <p class="montserrat"><b>Baye Sa rew</b></p>
+          <p>Gapassel (Dakaar), Senegal</p>
+          <br />
+          <p>
+            <span class="text-yellow">Boucounta</span>:
+            <a href="tel:+393342787131" style="white-space: nowrap;"
+              >+39 334 2787131</a
+            >
+          </p>
+          <p>
+            <span class="text-yellow">Emanuele</span>:
+            <a href="tel:+393714173635" style="white-space: nowrap;"
+              >+39 371 4173635</a
+            >
+          </p>
+          <p>
+            <span class="text-yellow">Simone</span>:
+            <a href="tel:+393714820379" style="white-space: nowrap;"
+              >+39 371 4820379</a
+            >
+          </p>
+          <br />
+          <p>
+            <a href="mailto:bayesarew.coop@gmail.com"
+              >bayesarew.coop@gmail.com</a
+            >
+          </p>
+        </div>
+        <div class="contacts-col w-50">
+          <h3 set:html={t.titolo2Contatti} />
+          <div class="social-icons">
+            <div>
+              <a href="https://www.instagram.com/baye_sa_rew/" target="_blank">
+                <img
+                  class="w-100"
+                  src="/resources/img/social/ig.svg"
+                  alt="ig-social-icon"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+            <div>
+              <a
+                href="https://www.facebook.com/Baye-Sa-Rew-Villaggio-di-Gapassel-103300722295945/"
+                target="_blank"
+              >
+                <img
+                  class="w-100"
+                  src="/resources/img/social/fb.svg"
+                  alt="fb-social-icon"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script is:inline src="/js/imageModal.js"></script>
+    <script is:inline src="/js/index.js"></script>
+  </body>
+</html>

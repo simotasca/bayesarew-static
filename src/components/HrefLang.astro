@@ -1,0 +1,32 @@
+---
+import { getLanguagesList, translateUrl } from "../lib/language";
+
+const { url, language } = Astro.props;
+
+const currentUrl = Astro.url;
+
+const hrefLinks = (await getLanguagesList()).map((lang) => {
+  if (language == lang) {
+    return {
+      rel: "canonical",
+      href: currentUrl,
+    };
+  }
+
+  return {
+    rel: "alternate",
+    hreflang: lang,
+    href: currentUrl.origin + "/" + lang + translateUrl(url, lang),
+  };
+});
+---
+
+{
+  hrefLinks.map((link) =>
+    link.hreflang ? (
+      <link rel={link.rel} href={link.href} hreflang={link.hreflang} />
+    ) : (
+      <link rel={link.rel} href={link.href} />
+    )
+  )
+}

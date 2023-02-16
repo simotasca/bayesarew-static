@@ -1,0 +1,651 @@
+---
+import HrefLang from "../../components/HrefLang.astro";
+import Link from "../../components/Link.astro";
+import { DONATION_URL } from "../../lib/constants";
+import { getLanguageFromFileName, getUrlFromFileName, translateUrl } from "../../lib/language";
+
+export async function getStaticPaths() {
+  const translations = await Astro.glob("../../content/**/progetti.md");
+
+  return translations.map((t) => {
+    const language = getLanguageFromFileName(t.file);
+    const baseUrl = getUrlFromFileName(t.file);
+    const slug = translateUrl(baseUrl, language).slice(1);
+    return {
+      params: {
+        lang: language,
+        progetti: slug,
+      },
+      props: {
+        header: t.frontmatter,
+        content: t.Content,
+        language,
+        baseUrl,
+      },
+    };
+  });
+}
+
+const { header: t, language, baseUrl } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={language} prefix="og: https://ogp.me/ns#">
+  <head>
+    <!-- BASE -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{t.headTitle}</title>
+    <meta name="description" content={t.metaDescription} />
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <!-- Open Graph -->
+    <meta property="og:title" content={t.opengraphTitle} />
+    <meta property="og:description" content={t.opengraphDescription} />
+    <meta property="og:site_name" content="BayeSaRew" />
+    <meta property="og:image" content="/resources/img/opengraph.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image:alt" content={t.twitterContent} />
+    <!-- I18N -->
+    <HrefLang language={language} url={baseUrl} />
+    <!-- FONTS -->
+    <link
+      rel="preload"
+      href="/resources/font/oswald/oswald-v47-latin-700.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/resources/font/cooper/CooperHewitt-Bold.woff2"
+      type="font/woff2"
+      as="font"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/resources/font/cooper/CooperHewitt-Light.woff2"
+      type="font/woff2"
+      as="font"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/resources/font/montserrat/montserrat-v23-latin-500.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/resources/font/montserrat/montserrat-v23-latin-600.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/progetti.min.css" />
+    <!-- JS -->
+    <script
+      is:inline
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"
+    ></script>
+    <script
+      is:inline
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js"
+    ></script>
+  </head>
+
+  <body>
+    <div class="full-bg">
+      <div id="main-column">
+        <header class="split">
+          <div class="strip-container">
+            <div class="strip strip--yellow strip--left"></div>
+            <picture>
+              <source
+                srcset="/resources/img/foto/donne_agricoltura.webp"
+                type="image/webp"
+              />
+              <source
+                srcset="/resources/img/foto/donne_agricoltura.jpg"
+                type="image/jpeg"
+              />
+              <img
+                id="main-img"
+                src="/resources/img/progetti/donne_agricoltura.jpg"
+                alt="Donne africane coltivano"
+              />
+            </picture>
+            <h1 class="text-yellow" set:html={t.titoloSlogan} />
+          </div>
+          <div>
+            <nav class="menu">
+              <img
+                class="menu-item hide-on-mobile"
+                src="/resources/img/logo2.svg"
+                alt=""
+                loading="lazy"
+              />
+              <Link
+                class="menu-item"
+                href="/"
+                language={language}
+                set:html={t.menu1}
+              />
+              <Link
+                class="menu-item"
+                href="/chi-siamo"
+                language={language}
+                set:html={t.menu2}
+              />
+              <a class="menu-item" set:html={t.menu3} />
+            </nav>
+            <img
+              class="hide-on-desktop"
+              src="/resources/img/logo2.svg"
+              alt=""
+              loading="lazy"
+            />
+          </div>
+        </header>
+
+        <div class="spacer hide-on-mobile"></div>
+        <div class="spacer hide-on-mobile"></div>
+
+        <section class="split">
+          <div class="half half--left">
+            <div id="ventaglio">
+              <picture>
+                <source
+                  srcset="/resources/img/foto/bambino-sulcarro.webp"
+                  type="image/webp"
+                />
+                <source
+                  srcset="/resources/img/foto/bambino-sulcarro.jpg"
+                  type="image/jpeg"
+                />
+                <img
+                  id="ventaglio__1"
+                  class="img-modal__toggler"
+                  src="/resources/img/foto/bambino-sulcarro.jpg"
+                  alt="bambino africano su un carro"
+                  loading="lazy"
+                />
+              </picture>
+              <picture>
+                <source
+                  srcset="/resources/img/foto/bambino-ride.webp"
+                  type="image/webp"
+                />
+                <source
+                  srcset="/resources/img/foto/bambino-ride.jpg"
+                  type="image/jpeg"
+                />
+                <img
+                  id="ventaglio__2"
+                  class="img-modal__toggler"
+                  src="/resources/img/foto/bambino-ride.jpg"
+                  alt="bambino africano ride"
+                  loading="lazy"
+                />
+              </picture>
+              <picture>
+                <source
+                  srcset="/resources/img/foto/bambina-inbraccio.webp"
+                  type="image/webp"
+                />
+                <source
+                  srcset="/resources/img/foto/bambina-inbraccio.jpg"
+                  type="image/jpeg"
+                />
+                <img
+                  id="ventaglio__3"
+                  class="img-modal__toggler"
+                  src="/resources/img/foto/bambina-inbraccio.jpg"
+                  alt=""
+                  loading="lazy"
+                />
+              </picture>
+            </div>
+          </div>
+
+          <div>
+            <div class="strip-container p-2">
+              <div class="strip strip--yellow strip--right"></div>
+
+              <div class="half half--right">
+                <h3 class="text-white text-shadow" set:html={t.titolo1} />
+                <p class="montserrat" set:html={t.paragrafo1} />
+                <a
+                  href={DONATION_URL}
+                  target="_blank"
+                  class="btn btn-dark h3"
+                  set:html={t.tastoDona}
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="spacer"></div>
+        <div class="spacer hide-on-mobile"></div>
+        <div class="spacer"></div>
+
+        <section id="mactar" class="split split--mobile-reverse">
+          <div>
+            <div class="strip-container">
+              <div class="strip strip--yellow strip--left"></div>
+              <div class="half half--left p-2">
+                <picture>
+                  <source
+                    srcset="/resources/img/foto/squadra_calcio.webp"
+                    type="image/webp"
+                  />
+                  <source
+                    srcset="/resources/img/foto/squadra_calcio.jpg"
+                    type="image/jpeg"
+                  />
+                  <img
+                    class="img-modal__toggler"
+                    src="/resources/img/foto/squadra_calcio.jpg"
+                    alt=""
+                    loading="lazy"
+                  />
+                </picture>
+              </div>
+            </div>
+
+            <div class="half half--left p-2">
+              <p
+                class="montserrat text-white fw-normal text-shadow"
+                set:html={t.paragrafo2}
+              />
+            </div>
+          </div>
+
+          <div class="p-2">
+            <h3 class="text-white text-shadow" set:html={t.titolo2} />
+            <h5
+              class="text-white montserrat fw-500 text-shadow"
+              set:html={t.bigtesto1}
+            />
+            <picture>
+              <source
+                srcset="/resources/img/logo_diouf.webp"
+                type="image/webp"
+              />
+              <source
+                srcset="/resources/img/logo_diouf.jpg"
+                type="image/jpeg"
+              />
+              <img
+                id="logo-diouf"
+                src="/resources/img/logo_diouf.jpg"
+                alt="logo della scuola di calcia Mactar Diouf"
+                loading="lazy"
+              />
+            </picture>
+          </div>
+        </section>
+
+        <div class="spacer"></div>
+
+        <section class="split split--mobile-reverse">
+          <div id="loghi-associazioni" class="p-2">
+            <picture>
+              <img
+                class="logo-assoc"
+                src="/resources/img/logo_quarto_raggio.svg"
+                alt="logo dell'associazione Quarto Raggio"
+                loading="lazy"
+              />
+            </picture>
+            <picture>
+              <img
+                class="logo-assoc"
+                src="/resources/img/logo_ASR.svg"
+                alt="Logo della squadra di rugby di Milano"
+                loading="lazy"
+              />
+            </picture>
+
+            <picture>
+              <source
+                srcset="/resources/img/foto/logo_city_angels.webp"
+                type="image/webp"
+              />
+              <source
+                srcset="/resources/img/logo_city_angels.jpg"
+                type="image/jpeg"
+              />
+              <img
+                class="logo-assoc"
+                src="/resources/img/logo_city_angels.jpg"
+                alt="Logo di City Angels"
+                loading="lazy"
+              />
+            </picture>
+          </div>
+
+          <div class="p-2">
+            <div class="half">
+              <h4
+                class="text-white montserrat fw-500 mb-0 text-shadow"
+                set:html={t.bigtesto2}
+              />
+            </div>
+          </div>
+        </section>
+
+        <div class="spacer"></div>
+
+        <section class="split">
+          <div id="partecipa-foto-container">
+            <div class="strip-container">
+              <div class="strip strip--yellow strip--left"></div>
+              <div class="half half--left">
+                <div id="partecipa-foto-grid">
+                  <picture>
+                    <source
+                      srcset="/resources/img/foto/divise-inviate.webp"
+                      type="image/webp"
+                    />
+                    <source
+                      srcset="/resources/img/foto/divise-inviate.jpg"
+                      type="image/jpeg"
+                    />
+                    <img
+                      class="img-fluid img-modal__toggler"
+                      src="/resources/img/foto/divise-inviate.jpg"
+                      alt="Le divise ufficiali di mactar diouf"
+                      loading="lazy"
+                    />
+                  </picture>
+                  <picture>
+                    <source
+                      srcset="/resources/img/foto/pantaloncini_blu.webp"
+                      type="image/webp"
+                    />
+                    <source
+                      srcset="/resources/img/foto/pantaloncini_blu.jpg"
+                      type="image/jpeg"
+                    />
+                    <img
+                      class="img-fluid img-modal__toggler"
+                      src="/resources/img/foto/pantaloncini_blu.jpg"
+                      alt="i pantaloncini blu delle divise di mactar diouf"
+                      loading="lazy"
+                    />
+                  </picture>
+                  <picture>
+                    <source
+                      srcset="/resources/img/foto/pantaloncini_verdi.webp"
+                      type="image/webp"
+                    />
+                    <source
+                      srcset="/resources/img/foto/pantaloncini_verdi.jpg"
+                      type="image/jpeg"
+                    />
+                    <img
+                      class="img-fluid img-modal__toggler"
+                      src="/resources/img/foto/pantaloncini_verdi.jpg"
+                      alt="i pantaloncini verdi delle divise di mactar diouf"
+                      loading="lazy"
+                    />
+                  </picture>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-2">
+            <div class="half half--right">
+              <p
+                class="montserrat text-white fw-normal text-shadow"
+                set:html={t.paragrafo3}
+              />
+              <div id="partecipa">
+                <h3 class="text-white text-shadow" set:html={`${t.titolo3}:`} />
+                <div>
+                  <a
+                    href={DONATION_URL}
+                    target="_blank"
+                    class="btn btn-outline"
+                  >
+                    Go Fundme
+                  </a>
+                  <a
+                    href={DONATION_URL}
+                    target="_blank"
+                    class="btn btn-yellow"
+                    set:html={t.tastoDona}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+
+        <section class="split">
+          <div id="img-lavoratori-container">
+            <div class="half half--left">
+              <picture>
+                <source
+                  srcset="/resources/img/foto/donne-rastrellano.webp"
+                  type="image/webp"
+                />
+                <source
+                  srcset="/resources/img/foto/donne-rastrellano.jpg"
+                  type="image/jpeg"
+                />
+                <img
+                  class="img-fluid img-modal__toggler"
+                  src="/resources/img/foto/donne-rastrellano.jpg"
+                  alt="donne africane che lavorano nei campi"
+                  loading="lazy"
+                />
+              </picture>
+            </div>
+          </div>
+
+          <div>
+            <div class="strip-container p-2">
+              <div class="strip strip--right strip--blue"></div>
+              <h3 class="text-white text-shadow" set:html={t.titolo4} />
+              <p
+                class="text-white fw-500 montserrat mb-0"
+                set:html={t.paragrafo4}
+              />
+            </div>
+          </div>
+        </section>
+
+        <div class="spacer"></div>
+
+        <section class="split">
+          <div></div>
+          <div class="p-2">
+            <div class="half">
+              <h4
+                class="text-white montserrat fw-500 text-shadow mb-0"
+                set:html={t.bigtesto3}
+              />
+            </div>
+          </div>
+        </section>
+
+        <div class="spacer"></div>
+
+        <section class="split">
+          <div>
+            <div id="diagonal-images-container" class="strip-container">
+              <div class="strip strip--blue strip--left"></div>
+              <div id="diagonal-images" class="half half--left">
+                <picture>
+                  <source
+                    srcset="/resources/img/foto/pecore.webp"
+                    type="image/webp"
+                  />
+                  <source
+                    srcset="/resources/img/foto/pecore.jpg"
+                    type="image/jpeg"
+                  />
+                  <img
+                    class="img-modal__toggler"
+                    src="/resources/img/foto/pecore.jpg"
+                    alt="il terreno coltivabile del villaggio di Gapassel"
+                    loading="lazy"
+                  />
+                </picture>
+                <picture>
+                  <source
+                    srcset="/resources/img/foto/tre_bambini_2.webp"
+                    type="image/webp"
+                  />
+                  <source
+                    srcset="/resources/img/foto/tre_bambini_2.jpg"
+                    type="image/jpeg"
+                  />
+                  <img
+                    class="img-modal__toggler"
+                    src="/resources/img/foto/tre_bambini_2.jpg"
+                    alt="bambini africani che corrono nei campi"
+                    loading="lazy"
+                  />
+                </picture>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-2">
+            <div class="half text-white montserrat text-shadow">
+              <p class="fw-normal" set:html={t.paragrafo5} />
+              <p class="fw-normal" set:html={t.paragrafo6} />
+            </div>
+          </div>
+        </section>
+
+        <div class="spacer"></div>
+        <div class="spacer hide-on-mobile"></div>
+
+        <section class="split">
+          <div></div>
+
+          <div>
+            <div class="strip-container p-2">
+              <div class="strip strip--right strip--blue"></div>
+              <div class="half half--right">
+                <h3 class="text-white text-shadow" set:html={t.titolo5} />
+                <p class="text-white montserrat mb-0" set:html={t.paragrafo7} />
+              </div>
+            </div>
+
+            <ul class="text-white montserrat text-shadow">
+              <li>
+                <h4 class="fw-normal" set:html={t.bigtesto4} />
+              </li>
+              <li>
+                <h4 class="fw-normal" set:html={t.bigtesto5} />
+              </li>
+              <li>
+                <h4 class="fw-normal" set:html={t.bigtesto6} />
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <div class="spacer"></div>
+        <div class="spacer hide-on-mobile"></div>
+        <div class="spacer hide-on-mobile"></div>
+
+        <section class="contacts-container">
+          <div class="contacts flex">
+            <div class="contacts-col contacts-logo w-50">
+              <img
+                class="w-100"
+                src="/resources/img/logo2.svg"
+                alt="logo"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="contacts-col w-50">
+              <h3 set:html={t.titolo1Contatti} />
+              <p class="montserrat"><b>Baye Sa rew</b></p>
+              <p>Gapassel (Dakaar), Senegal</p>
+              <br />
+              <p>
+                <span class="text-yellow">Boucounta</span>:
+                <a href="tel:+393342787131" style="white-space: nowrap;"
+                  >+39 334 2787131</a
+                >
+              </p>
+              <p>
+                <span class="text-yellow">Emanuele</span>:
+                <a href="tel:+393714173635" style="white-space: nowrap;"
+                  >+39 371 4173635</a
+                >
+              </p>
+              <p>
+                <span class="text-yellow">Simone</span>:
+                <a href="tel:+393714820379" style="white-space: nowrap;"
+                  >+39 371 4820379</a
+                >
+              </p>
+              <br />
+              <p>
+                <a href="mailto:bayesarew.coop@gmail.com"
+                  >bayesarew.coop@gmail.com</a
+                >
+              </p>
+            </div>
+            <div class="contacts-col w-50">
+              <h3 set:html={t.titolo2Contatti} />
+              <div class="social-icons">
+                <div>
+                  <a
+                    href="https://www.instagram.com/baye_sa_rew/"
+                    target="_blank"
+                  >
+                    <img
+                      class="w-100"
+                      src="/resources/img/social/ig.svg"
+                      alt="ig-social-icon"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+                <div>
+                  <a
+                    href="https://www.facebook.com/Baye-Sa-Rew-Villaggio-di-Gapassel-103300722295945/"
+                    target="_blank"
+                  >
+                    <img
+                      class="w-100"
+                      src="/resources/img/social/fb.svg"
+                      alt="fb-social-icon"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script is:inline src="/js/imageModal.js"></script>
+    <script is:inline src="/js/progetti.js"></script>
+  </body>
+</html>

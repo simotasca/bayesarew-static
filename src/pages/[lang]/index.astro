@@ -1,0 +1,25 @@
+---
+import { getLanguageFromFileName, getUrlFromFileName, translateUrl } from "../../lib/language";
+
+import IndexLayout from "../../layouts/IndexLayout.astro";
+
+export async function getStaticPaths() {
+  const translations = await Astro.glob("../../content/**/index.md");
+
+  return translations.map((t) => {
+    const language = getLanguageFromFileName(t.file);
+    return {
+      params: {lang: language},
+      props: {
+        header: t.frontmatter,
+        content: t.Content,
+        language
+      },
+    };
+  });
+}
+
+const { header: t, language } = Astro.props;
+---
+
+<IndexLayout t={t} language={language} baseUrl="/" />

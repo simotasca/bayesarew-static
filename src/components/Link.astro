@@ -1,0 +1,9 @@
+---
+import { translateUrl } from "../lib/language";
+const { language, href, ...props } = Astro.props;
+const hrefOk = `/${language}${translateUrl(href, language)}`;
+---
+
+<a href={hrefOk} {...props}>
+  <slot />
+</a>

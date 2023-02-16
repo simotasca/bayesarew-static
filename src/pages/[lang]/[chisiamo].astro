@@ -1,0 +1,261 @@
+---
+import { readdir } from "fs/promises";
+import HrefLang from "../../components/HrefLang.astro";
+import Link from "../../components/Link.astro";
+import {
+  getLanguageFromFileName,
+  getUrlFromFileName,
+  translateUrl,
+} from "../../lib/language";
+
+export async function getStaticPaths() {
+  const translations = await Astro.glob("../../content/**/chi-siamo.md");
+
+  return translations.map((t) => {
+    const language = getLanguageFromFileName(t.file);
+    const baseUrl = getUrlFromFileName(t.file);
+    const slug = translateUrl(baseUrl, language).slice(1);
+    return {
+      params: {
+        lang: language,
+        chisiamo: slug,
+      },
+      props: {
+        header: t.frontmatter,
+        content: t.Content,
+        language,
+        baseUrl,
+      },
+    };
+  });
+}
+
+const { header: t, language, baseUrl } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={language} prefix="og: https://ogp.me/ns#">
+  <head>
+    <!-- BASE -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{t.titoloHead}</title>
+    <meta name="description" content={t.metaDescription} />
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <!-- Open Graph -->
+    <meta property="og:title" content={t.opengraphTitle} />
+    <meta property="og:description" content={t.opengraphDescription} />
+    <meta property="og:site_name" content="BayeSaRew" />
+    <meta
+      property="og:image"
+      content="http://www.bayesarew.com/resources/img/opengraph.png"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image:alt" content={t.twitterContent} />
+    <!-- I18N -->
+    <HrefLang language={language} url={baseUrl} />
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/chisiamo.min.css" />
+  </head>
+
+  <body>
+    <div id="main-bg"></div>
+
+    <div class="max-width text-white">
+      <img
+        class="img-background"
+        src="/resources/img/new-impronta.svg"
+        alt="impronta"
+      />
+      <header class="split">
+        <div class="strip-container">
+          <div class="strip strip--yellow strip--left"></div>
+          <!-- <img id="main-img" src="/resources/img/foto/donna-pensosa.jpg" alt="ragazza-pensosa"> -->
+          <picture>
+            <source
+              srcset="/resources/img/foto/donna-pensosa.webp"
+              type="image/webp"
+            />
+            <source
+              srcset="/resources/img/foto/donna-pensosa.jpg"
+              type="image/jpeg"
+            />
+            <img
+              id="main-img"
+              src="/resources/img/foto/donna-pensosa.jpg"
+              alt="ragazza-pensosa"
+            />
+          </picture>
+          <h1 class="text-yellow" set:html="t.titoloSlogan" />
+        </div>
+        <div>
+          <nav class="menu">
+            <img
+              class="menu-item hide-on-mobile"
+              src="/resources/img/logo2.svg"
+              alt="logo"
+              loading="lazy"
+            />
+            <Link
+              class="menu-item"
+              href="/"
+              language={language}
+              set:html={t.menu1}
+            />
+            <a class="menu-item" set:html={t.menu2} />
+            <Link
+              class="menu-item"
+              href="/progetti"
+              language={language}
+              set:html={t.menu3}
+            />
+          </nav>
+          <img
+            class="hide-on-desktop"
+            src="/resources/img/logo2.svg"
+            alt="logo"
+            loading="lazy"
+          />
+        </div>
+      </header>
+
+      <div class="spacer hide-on-mobile"></div>
+      <div class="spacer"></div>
+
+      <section>
+        <h3 class="section-title" set:html={t.titolo1} />
+        <div class="griglia-presidente">
+          <div class="paragrafo1 montserrat">
+            <p set:html={t.paragrafo1} />
+          </div>
+          <div>
+            <picture>
+              <source
+                srcset="/resources/img/foto/boukountà.webp"
+                type="image/webp"
+              />
+              <source
+                srcset="/resources/img/foto/boukountà.jpg"
+                type="image/jpeg"
+              />
+              <img
+                class="img-boukounta"
+                src="/resources/img/foto/boukountà.jpg"
+                alt="presidente-mbaye-boucountà"
+              />
+            </picture>
+          </div>
+        </div>
+      </section>
+
+      <div class="spacer"></div>
+
+      <section class="margin-top">
+        <h3 class="section-title section-title--right" set:html={t.titolo2} />
+        <div class="griglia-quartoraggio">
+          <div>
+            <picture>
+              <source
+                srcset="/resources/img/foto/trovami2.webp"
+                type="image/webp"
+              />
+              <source
+                srcset="/resources/img/foto/trovami2.jpg"
+                type="image/jpeg"
+              />
+              <img
+                class="img-quartoraggio"
+                src="/resources/img/foto/trovami2.jpg"
+                alt="presidente-mbaye-boucountà"
+              />
+            </picture>
+          </div>
+          <div class="paragrafo2 montserrat">
+            <p set:html={t.paragrafo2} />
+            <p set:html={t.paragrafo3} />
+          </div>
+        </div>
+      </section>
+
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+    </div>
+
+    <section class="contacts-container">
+      <div class="contacts flex">
+        <div class="contacts-col contacts-logo w-50">
+          <img
+            class="w-100"
+            src="/resources/img/logo2.svg"
+            loading="lazy"
+            alt="logo"
+          />
+        </div>
+
+        <div class="contacts-col w-50">
+          <h3 set:html={t.titolo1Contatti} />
+          <p class="montserrat"><b>Baye Sa rew</b></p>
+          <p>Gapassel (Dakaar), Senegal</p>
+          <br />
+          <p>
+            <span class="text-yellow">Boucounta</span>:
+            <a href="tel:+393342787131" style="white-space: nowrap;"
+              >+39 334 2787131</a
+            >
+          </p>
+          <p>
+            <span class="text-yellow">Emanuele</span>:
+            <a href="tel:+393714173635" style="white-space: nowrap;"
+              >+39 371 4173635</a
+            >
+          </p>
+          <p>
+            <span class="text-yellow">Simone</span>:
+            <a href="tel:+393714820379" style="white-space: nowrap;"
+              >+39 371 4820379</a
+            >
+          </p>
+          <br />
+          <p>
+            <a href="mailto:bayesarew.coop@gmail.com"
+              >bayesarew.coop@gmail.com</a
+            >
+          </p>
+        </div>
+        <div class="contacts-col w-50">
+          <h3 set:html={t.titolo2Contatti} />
+          <div class="social-icons">
+            <div>
+              <a href="https://www.instagram.com/baye_sa_rew/" target="_blank">
+                <img
+                  class="w-100"
+                  src="/resources/img/social/ig.svg"
+                  alt="ig-social-icon"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+            <div>
+              <a
+                href="https://www.facebook.com/Baye-Sa-Rew-Villaggio-di-Gapassel-103300722295945/"
+                target="_blank"
+              >
+                <img
+                  class="w-100"
+                  src="/resources/img/social/fb.svg"
+                  alt="fb-social-icon"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
