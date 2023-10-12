@@ -4,10 +4,12 @@ slug: coperatif
 titoloHead: La Coperatif
 
 headTitle: La Coperatif Agricole - BayeSaRew
-metaDescription: L'histoire du village de Gapassel et de son président. Membres de la coopérative Baye Sa Rew et des associations partenaires italiennes et internationales.
 
-opengraphTitle: A' props de nous - BayeSaRew
-opengraphDescription: L'histoire du village de Gapassel et de son président. Membres de la coopérative Baye Sa Rew et des associations partenaires italiennes et internationales.
+metaDescription: Tous les projets de la coopérative agricole basée à Gapsel
+
+opengraphTitle: La Coperatif - BayeSaRew
+
+opengraphDescription: Tous les projets de la coopérative agricole basée à Gapsel
 
 twitterContent: Baye Sa Rew&colon; Développement agricole et social au Sénégal
 

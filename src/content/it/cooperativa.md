@@ -5,11 +5,10 @@ titoloHead: La Cooperativa
 
 headTitle: La Cooperativa - BayeSaRew
 
-metaDescription: La storia del villaggio di Gapassel e del suo presidente. Soci membri della cooperativa Baye Sa Rew e Associazioni Partners Italiane e Internazionali.
+metaDescription: Tutti i progetti della cooperativa agricola con sede a Gapsel
+opengraphTitle: La Cooperativa - BayeSaRew
 
-opengraphTitle: Chi Siamo - BayeSaRew
-
-opengraphDescription: La storia del villaggio di Gapassel e del suo presidente. Soci membri della cooperativa Baye Sa Rew e Associazioni Partners Italiane e Internazionali.
+opengraphDescription: Tutti i progetti della cooperativa agricola con sede a Gapsel
 
 twitterContent: Baye Sa Rew&colon; Sviluppo Agricolo e Sociale in Senegal
 

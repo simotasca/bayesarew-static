@@ -3,11 +3,10 @@ slug: mactardiouf
 
 titoloHead: Ecole de footbalL Mactar Diouf - Baye Sa Rew
 
-headTitle: Ecole de futbal Mactar Diouf - BayeSaRew
-metaDescription: L'histoire du village de Gapassel et de son président. Membres de la coopérative Baye Sa Rew et des associations partenaires italiennes et internationales.
-
-opengraphTitle: A' props de nous - BayeSaRew
-opengraphDescription: L'histoire du village de Gapassel et de son président. Membres de la coopérative Baye Sa Rew et des associations partenaires italiennes et internationales.
+headTitle: Ecole de football Mactar Diouf - BayeSaRew
+metaDescription: Le projet social de l'école de football visant à éduquer les enfants par le sport et comme activité bénéfique pour la société sénégalaise
+opengraphTitle: Ecole de Football Mactardiouf - BayeSaRew
+opengraphDescription: Le projet social de l'école de football visant à éduquer les enfants par le sport et comme activité bénéfique pour la société sénégalaise
 
 twitterContent: Baye Sa Rew&colon; Développement agricole et social au Sénégal
 

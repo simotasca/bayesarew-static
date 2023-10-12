@@ -1,15 +1,15 @@
 ---
 slug: mactardiouf
 
-titoloHead: La scuola di calcio Mactar Diouf
+titoloHead: La scuola calcio Mactar Diouf
 
-headTitle: La scuola di calcio Mactar Diouf - BayeSaRew
+headTitle: La scuola calcio Mactar Diouf - BayeSaRew
 
-metaDescription: La storia del villaggio di Gapassel e del suo presidente. Soci membri della cooperativa Baye Sa Rew e Associazioni Partners Italiane e Internazionali.
+metaDescription: Il progetto sociale della scuola di calcio reqlizzato per educare i bambini attraverso lo sport e quale attività benefica per la società senegalese
 
-opengraphTitle: Chi Siamo - BayeSaRew
+opengraphTitle: La scuola calcio Mactardiouf - BayeSaRew
 
-opengraphDescription: La storia del villaggio di Gapassel e del suo presidente. Soci membri della cooperativa Baye Sa Rew e Associazioni Partners Italiane e Internazionali.
+opengraphDescription: Il progetto sociale della scuola di calcio reqlizzato per educare i bambini attraverso lo sport e quale attività benefica per la società senegalese
 
 twitterContent: Baye Sa Rew&colon; Sviluppo Agricolo e Sociale in Senegal
 
