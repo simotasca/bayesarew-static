@@ -7,13 +7,21 @@
 		"start": "astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
-		"astro": "astro"
+		"astro": "astro",
+		"sass:index": "sass --watch ./scss/index.scss:./public/css/index.min.css --style compressed",
+		"sass:progetti": "sass --watch ./scss/progetti.scss:./public/css/progetti.min.css --style compressed",
+		"sass:chisiamo": "sass --watch ./scss/chisiamo.scss:./public/css/chisiamo.min.css --style compressed",
+		"sass:cooperativa": "sass --watch ./scss/cooperativa.scss:./public/css/cooperativa.min.css --style compressed",
+		"sass:mactardiouf": "sass --watch ./scss/mactardiouf.scss:./public/css/mactardiouf.min.css --style compressed",
+		"sass": "concurrently \"npm run sass:index\" \"npm run sass:progetti\" \"npm run sass:cooperativa\" \"npm run sass:mactardiouf\""
 	},
 	"dependencies": {
 		"@astrojs/mdx": "^0.16.2",
 		"astro": "^2.0.12"
 	},
 	"devDependencies": {
-		"@types/node": "^18.13.0"
+		"@types/node": "^18.13.0",
+		"concurrently": "^8.2.1",
+		"sass": "^1.69.0"
 	}
 }

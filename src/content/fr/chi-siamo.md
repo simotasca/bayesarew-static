@@ -14,6 +14,8 @@ twitterContent: Baye Sa Rew&colon; Développement agricole et social au Sénéga
 menu1: HOME
 menu2: A' PROPS DE NOUS
 menu3: PROJETS
+menu4: COPERATIF
+menu5: ECOLE DE FOOTBALL
 
 tastoDona: Faire un don
 
@@ -21,7 +23,7 @@ titoloSlogan: <span class="text-white">A' PROPS</span> DE NOUS
 
 titolo1: NOTRE <span class="text-yellow">PRESIDENT</span>
 
-paragrafo1: <span class="text-yellow">Boukounta Mbaye</span>, 55 ans, est président et fondateur de la coopérative Baye Sa Rew. <br> Il a hérité des terres de Gapassel de son grand-père, avec la responsabilité de créer une communauté prospère pour soutenir les familles de la région. <br> Depuis 15 ans, il lutte contre <span class="text-l-blue"> le problème de l'immigration</span> et promeut le travail agricole pour le développement et la croissance communautaire.
+paragrafo1: <span class="text-yellow">Boukounta Mbaye</span>, 53 ans, est président et fondateur de la coopérative Baye Sa Rew. <br> Il a hérité des terres de Gapassel de son grand-père, avec la responsabilité de créer une communauté prospère pour soutenir les familles de la région. <br> Depuis 15 ans, il lutte contre <span class="text-l-blue"> le problème de l'immigration</span> et promeut le travail agricole pour le développement et la croissance communautaire.
 
 titolo2: L'ASSOSATION DU <span class="text-l-blue">QUATRIÈME RAYON</span>
 

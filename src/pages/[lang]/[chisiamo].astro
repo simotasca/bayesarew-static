@@ -95,25 +95,57 @@ const { header: t, language, baseUrl } = Astro.props;
         </div>
         <div>
           <nav class="menu">
-            <img
+            <!-- <img
               class="menu-item hide-on-mobile"
               src="/resources/img/logo2.svg"
               alt="logo"
               loading="lazy"
-            />
+            /> -->
             <Link
               class="menu-item"
               href="/"
               language={language}
               set:html={t.menu1}
             />
-            <a class="menu-item" set:html={t.menu2} />
             <Link
+            class="menu-item"
+            href="/chi-siamo"
+            language={language}
+            set:html={t.menu2}
+          />
+          <div class="menu-item-tendina">
+            <p
+              class="menu-item text-black"
+              
+              
+              set:html={t.menu3}
+            />
+            <div class="menu-item-dropdown">
+              <div>
+                <Link
               class="menu-item"
               href="/progetti"
               language={language}
               set:html={t.menu3}
             />
+            <div class="spacer-8px"></div>
+                <Link
+                  class="menu-item"
+                  href="/cooperativa"
+                  language={language}
+                  set:html={t.menu4}
+                />
+                <div class="spacer-8px"></div>
+                <Link
+                  class="menu-item"
+                  href="/mactardiouf"
+                  language={language}
+                  set:html={t.menu5}
+                />
+              </div>
+            </div>
+          </div>
+           
           </nav>
           <img
             class="hide-on-desktop"

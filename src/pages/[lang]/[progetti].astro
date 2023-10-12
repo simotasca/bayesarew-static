@@ -2,7 +2,11 @@
 import HrefLang from "../../components/HrefLang.astro";
 import Link from "../../components/Link.astro";
 import { DONATION_URL } from "../../lib/constants";
-import { getLanguageFromFileName, getUrlFromFileName, translateUrl } from "../../lib/language";
+import {
+  getLanguageFromFileName,
+  getUrlFromFileName,
+  translateUrl,
+} from "../../lib/language";
 
 export async function getStaticPaths() {
   const translations = await Astro.glob("../../content/**/progetti.md");
@@ -102,7 +106,7 @@ const { header: t, language, baseUrl } = Astro.props;
   </head>
 
   <body>
-    <div class="full-bg">
+    <div>
       <div id="main-column">
         <header class="split">
           <div class="strip-container">
@@ -144,7 +148,33 @@ const { header: t, language, baseUrl } = Astro.props;
                 language={language}
                 set:html={t.menu2}
               />
-              <a class="menu-item" set:html={t.menu3} />
+              <div class="menu-item-tendina">
+                <p class="menu-item text-black" set:html={t.menu3} />
+                <div class="menu-item-dropdown">
+                  <div>
+                    <Link
+                      class="menu-item"
+                      href="/progetti"
+                      language={language}
+                      set:html={t.menu3}
+                    />
+                    <div class="spacer-8px"></div>
+                    <Link
+                      class="menu-item"
+                      href="/cooperativa"
+                      language={language}
+                      set:html={t.menu4}
+                    />
+                    <div class="spacer-8px"></div>
+                    <Link
+                      class="menu-item"
+                      href="/mactardiouf"
+                      language={language}
+                      set:html={t.menu5}
+                    />
+                  </div>
+                </div>
+              </div>
             </nav>
             <img
               class="hide-on-desktop"
@@ -156,86 +186,6 @@ const { header: t, language, baseUrl } = Astro.props;
         </header>
 
         <div class="spacer hide-on-mobile"></div>
-        <div class="spacer hide-on-mobile"></div>
-
-        <section class="split">
-          <div class="half half--left">
-            <div id="ventaglio">
-              <picture>
-                <source
-                  srcset="/resources/img/foto/bambino-sulcarro.webp"
-                  type="image/webp"
-                />
-                <source
-                  srcset="/resources/img/foto/bambino-sulcarro.jpg"
-                  type="image/jpeg"
-                />
-                <img
-                  id="ventaglio__1"
-                  class="img-modal__toggler"
-                  src="/resources/img/foto/bambino-sulcarro.jpg"
-                  alt="bambino africano su un carro"
-                  loading="lazy"
-                />
-              </picture>
-              <picture>
-                <source
-                  srcset="/resources/img/foto/bambino-ride.webp"
-                  type="image/webp"
-                />
-                <source
-                  srcset="/resources/img/foto/bambino-ride.jpg"
-                  type="image/jpeg"
-                />
-                <img
-                  id="ventaglio__2"
-                  class="img-modal__toggler"
-                  src="/resources/img/foto/bambino-ride.jpg"
-                  alt="bambino africano ride"
-                  loading="lazy"
-                />
-              </picture>
-              <picture>
-                <source
-                  srcset="/resources/img/foto/bambina-inbraccio.webp"
-                  type="image/webp"
-                />
-                <source
-                  srcset="/resources/img/foto/bambina-inbraccio.jpg"
-                  type="image/jpeg"
-                />
-                <img
-                  id="ventaglio__3"
-                  class="img-modal__toggler"
-                  src="/resources/img/foto/bambina-inbraccio.jpg"
-                  alt=""
-                  loading="lazy"
-                />
-              </picture>
-            </div>
-          </div>
-
-          <div>
-            <div class="strip-container p-2">
-              <div class="strip strip--yellow strip--right"></div>
-
-              <div class="half half--right">
-                <h3 class="text-white text-shadow" set:html={t.titolo1} />
-                <p class="montserrat" set:html={t.paragrafo1} />
-                <a
-                  href={DONATION_URL}
-                  target="_blank"
-                  class="btn btn-dark h3"
-                  set:html={t.tastoDona}
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <div class="spacer"></div>
-        <div class="spacer hide-on-mobile"></div>
-        <div class="spacer"></div>
 
         <section id="mactar" class="split split--mobile-reverse">
           <div>
@@ -275,6 +225,11 @@ const { header: t, language, baseUrl } = Astro.props;
               class="text-white montserrat fw-500 text-shadow"
               set:html={t.bigtesto1}
             />
+            <div class="p-2 mx-auto">
+              <Link href="/mactardiouf" language={language}>
+                <div class="btn btn-outline">SCOPRI</div>
+              </Link>
+            </div>
             <picture>
               <source
                 srcset="/resources/img/logo_diouf.webp"
@@ -345,7 +300,7 @@ const { header: t, language, baseUrl } = Astro.props;
 
         <div class="spacer"></div>
 
-        <section class="split">
+        <!-- <section class="split">
           <div id="partecipa-foto-container">
             <div class="strip-container">
               <div class="strip strip--yellow strip--left"></div>
@@ -430,10 +385,10 @@ const { header: t, language, baseUrl } = Astro.props;
               </div>
             </div>
           </div>
-        </section>
+        </section> -->
 
-        <div class="spacer"></div>
-        <div class="spacer"></div>
+        <!-- <div class="spacer"></div>
+        <div class="spacer"></div> -->
         <div class="spacer"></div>
 
         <section class="split">
@@ -466,6 +421,11 @@ const { header: t, language, baseUrl } = Astro.props;
                 class="text-white fw-500 montserrat mb-0"
                 set:html={t.paragrafo4}
               />
+              <div class="pt-2 mx-auto">
+                <Link href="/cooperativa" language={language}>
+                  <div class="btn btn-outline-blue">SCOPRI</div>
+                </Link>
+              </div>
             </div>
           </div>
         </section>
@@ -539,28 +499,77 @@ const { header: t, language, baseUrl } = Astro.props;
         <div class="spacer hide-on-mobile"></div>
 
         <section class="split">
-          <div></div>
+          <div class="half half--left">
+            <div id="ventaglio">
+              <picture>
+                <source
+                  srcset="/resources/img/foto/bambino-sulcarro.webp"
+                  type="image/webp"
+                />
+                <source
+                  srcset="/resources/img/foto/bambino-sulcarro.jpg"
+                  type="image/jpeg"
+                />
+                <img
+                  id="ventaglio__1"
+                  class="img-modal__toggler"
+                  src="/resources/img/foto/bambino-sulcarro.jpg"
+                  alt="bambino africano su un carro"
+                  loading="lazy"
+                />
+              </picture>
+              <picture>
+                <source
+                  srcset="/resources/img/foto/bambino-ride.webp"
+                  type="image/webp"
+                />
+                <source
+                  srcset="/resources/img/foto/bambino-ride.jpg"
+                  type="image/jpeg"
+                />
+                <img
+                  id="ventaglio__2"
+                  class="img-modal__toggler"
+                  src="/resources/img/foto/bambino-ride.jpg"
+                  alt="bambino africano ride"
+                  loading="lazy"
+                />
+              </picture>
+              <picture>
+                <source
+                  srcset="/resources/img/foto/bambina-inbraccio.webp"
+                  type="image/webp"
+                />
+                <source
+                  srcset="/resources/img/foto/bambina-inbraccio.jpg"
+                  type="image/jpeg"
+                />
+                <img
+                  id="ventaglio__3"
+                  class="img-modal__toggler"
+                  src="/resources/img/foto/bambina-inbraccio.jpg"
+                  alt=""
+                  loading="lazy"
+                />
+              </picture>
+            </div>
+          </div>
 
           <div>
             <div class="strip-container p-2">
-              <div class="strip strip--right strip--blue"></div>
+              <div class="strip strip--yellow strip--right"></div>
+
               <div class="half half--right">
-                <h3 class="text-white text-shadow" set:html={t.titolo5} />
-                <p class="text-white montserrat mb-0" set:html={t.paragrafo7} />
+                <h3 class="text-white text-shadow" set:html={t.titolo1} />
+                <p class="montserrat" set:html={t.paragrafo1} />
+                <a
+                  href={DONATION_URL}
+                  target="_blank"
+                  class="btn btn-dark h3"
+                  set:html={t.tastoDona}
+                />
               </div>
             </div>
-
-            <ul class="text-white montserrat text-shadow">
-              <li>
-                <h4 class="fw-normal" set:html={t.bigtesto4} />
-              </li>
-              <li>
-                <h4 class="fw-normal" set:html={t.bigtesto5} />
-              </li>
-              <li>
-                <h4 class="fw-normal" set:html={t.bigtesto6} />
-              </li>
-            </ul>
           </div>
         </section>
 
@@ -582,7 +591,7 @@ const { header: t, language, baseUrl } = Astro.props;
             <div class="contacts-col w-50">
               <h3 set:html={t.titolo1Contatti} />
               <p class="montserrat"><b>Baye Sa rew</b></p>
-              <p>Gapassel (Dakaar), Senegal</p>
+              <p>Gapsel (Dakar), Senegal</p>
               <br />
               <p>
                 <span class="text-yellow">Boucounta</span>:

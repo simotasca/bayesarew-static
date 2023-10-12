@@ -27,6 +27,8 @@ export async function getLanguagesList() {
 }
 
 const registry = {
+  "/mactardiouf": {fr: "/mactardiouf"},
+  "/cooperativa": {fr: "/coperatif"},
   "/chi-siamo": { fr: "/a-props-de-nous" },
   "/progetti": { fr: "/projets" },
 };

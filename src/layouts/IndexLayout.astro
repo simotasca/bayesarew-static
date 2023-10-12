@@ -41,6 +41,7 @@ const { language, t, baseUrl } = Astro.props;
     />
     <!-- CSS -->
     <link rel="stylesheet" href="/css/index.min.css" />
+
     <!-- JS -->
     <script
       is:inline
@@ -71,20 +72,47 @@ const { language, t, baseUrl } = Astro.props;
       <div id="logo-check" class="logo"></div>
 
       <nav class="menu">
-        <a class="menu-item" set:html={t.menu1} />
+        <a class="menu-item text-black" set:html={t.menu1} />
         <Link
-          class="menu-item"
+          class="menu-item text-black"
           href="/chi-siamo"
           language={language}
           language={language}
           set:html={t.menu2}
         />
-        <Link
-          class="menu-item"
-          href="/progetti"
-          language={language}
-          set:html={t.menu3}
-        />
+        <div class="menu-item-tendina">
+          <p
+            class="menu-item text-black"
+            
+            
+            set:html={t.menu3}
+          />
+          <div class="menu-item-dropdown">
+            <div>
+              <Link
+            class="menu-item"
+            href="/progetti"
+            language={language}
+            set:html={t.menu3}
+          />
+          <div class="spacer-8px"></div>
+              <Link
+                class="menu-item"
+                href="/cooperativa"
+                language={language}
+                set:html={t.menu4}
+              />
+              <div class="spacer-8px"></div>
+              <Link
+                class="menu-item"
+                href="/mactardiouf"
+                language={language}
+                set:html={t.menu5}
+              />
+            </div>
+          </div>
+        </div>
+
         <div id="flags">
           <a href="/">
             <img src="/resources/img/bandiere/it.jpg" alt="current-language" />
@@ -198,12 +226,38 @@ const { language, t, baseUrl } = Astro.props;
             language={language}
             set:html={t.menu2}
           />
-          <Link
-            class="menu-item"
-            href="/progetti"
-            language={language}
-            set:html={t.menu3}
-          />
+          <div class="menu-item-tendina">
+            <p
+              class="menu-item text-black"
+              
+              
+              set:html={t.menu3}
+            />
+            <div class="menu-item-dropdown">
+              <div>
+                <Link
+              class="menu-item"
+              href="/progetti"
+              language={language}
+              set:html={t.menu3}
+            />
+            <div class="spacer-8px"></div>
+                <Link
+                  class="menu-item"
+                  href="/cooperativa"
+                  language={language}
+                  set:html={t.menu4}
+                />
+                <div class="spacer-8px"></div>
+                <Link
+                  class="menu-item"
+                  href="/mactardiouf"
+                  language={language}
+                  set:html={t.menu5}
+                />
+              </div>
+            </div>
+          </div>
         </nav>
         <h2 class="montserrat m-0" set:html={t.titolo1} />
       </header>
@@ -285,12 +339,38 @@ const { language, t, baseUrl } = Astro.props;
           language={language}
           set:html={t.menu2}
         />
-        <Link
-          class="menu-item"
-          href="/progetti"
-          language={language}
-          set:html={t.menu3}
-        />
+        <div class="menu-item-tendina">
+          <p
+            class="menu-item text-black"
+            
+            
+            set:html={t.menu3}
+          />
+          <div class="menu-item-dropdown">
+            <div>
+              <Link
+            class="menu-item"
+            href="/progetti"
+            language={language}
+            set:html={t.menu3}
+          />
+          <div class="spacer-8px"></div>
+              <Link
+                class="menu-item"
+                href="/cooperativa"
+                language={language}
+                set:html={t.menu4}
+              />
+              <div class="spacer-8px"></div>
+              <Link
+                class="menu-item"
+                href="/mactardiouf"
+                language={language}
+                set:html={t.menu5}
+              />
+            </div>
+          </div>
+        </div>
       </nav>
 
       <div class="flex my-2">
@@ -627,5 +707,6 @@ const { language, t, baseUrl } = Astro.props;
 
     <script is:inline src="/js/imageModal.js"></script>
     <script is:inline src="/js/index.js"></script>
+    <script is:inline src="/js/tendina.js"></script>
   </body>
 </html>

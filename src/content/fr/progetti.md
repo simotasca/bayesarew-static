@@ -15,6 +15,8 @@ twitterContent: Baye Sa Rew&colon; Développement agricole et social au Sénéga
 menu1: HOME
 menu2: A' PROPS DE NOUS
 menu3: PROJETS
+menu4: COPERATIF
+menu5: ECOLE DE FOOTBALL
 
 tastoDona: Faire un don
 

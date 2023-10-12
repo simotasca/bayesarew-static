@@ -1,0 +1,405 @@
+---
+import HrefLang from "../../components/HrefLang.astro";
+import Link from "../../components/Link.astro";
+import {
+  getLanguageFromFileName,
+  getUrlFromFileName,
+  translateUrl,
+} from "../../lib/language";
+
+export async function getStaticPaths() {
+  const translations = await Astro.glob("../../content/**/mactardiouf.md");
+
+  return translations.map((t) => {
+    const language = getLanguageFromFileName(t.file);
+    const baseUrl = getUrlFromFileName(t.file);
+    const slug = translateUrl(baseUrl, language).slice(1);
+    return {
+      params: {
+        lang: language,
+        mactardiouf: slug,
+      },
+      props: {
+        header: t.frontmatter,
+        content: t.Content,
+        language,
+        baseUrl,
+      },
+    };
+  });
+}
+
+const { header: t, language, baseUrl } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={language} prefix="og: https://ogp.me/ns#">
+  <head>
+    <!-- BASE -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{t.titoloHead}</title>
+    <meta name="description" content={t.metaDescription} />
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <!-- Open Graph -->
+    <meta property="og:title" content={t.opengraphTitle} />
+    <meta property="og:description" content={t.opengraphDescription} />
+    <meta property="og:site_name" content="BayeSaRew" />
+    <meta
+      property="og:image"
+      content="http://www.bayesarew.com/resources/img/opengraph.png"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image:alt" content={t.twitterContent} />
+    <!-- I18N -->
+    <HrefLang language={language} url={baseUrl} />
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/mactardiouf.min.css" />
+  </head>
+
+  <body>
+    <div id="main-bg"></div>
+
+    <div class="max-width text-white">
+      <img
+        class="img-background"
+        src="/resources/img/new-impronta.svg"
+        alt="impronta"
+      />
+      <header class="split">
+        <div class="strip-container">
+          <div class="strip strip--yellow strip--left"></div>
+          <!-- <img id="main-img" src="/resources/img/foto/donna-pensosa.jpg" alt="ragazza-pensosa"> -->
+          <picture>
+            <img
+              id="main-img"
+              src="/resources/img/foto/squadra_calcio.jpg"
+              alt="squadra-mactardiouf"
+            />
+          </picture>
+          <div class="spacer"></div>
+          <div class="spacer"></div>
+          <h1
+            class="text-yellow text-right text-xl"
+            set:html="t.titoloSlogan"
+          />
+        </div>
+        <div>
+          <nav class="menu">
+            <!-- <img
+              class="menu-item hide-on-mobile"
+              src="/resources/img/logo2.svg"
+              alt="logo"
+              loading="lazy"
+            /> -->
+            <Link
+              class="menu-item"
+              href="/"
+              language={language}
+              set:html={t.menu1}
+            />
+            <Link
+            class="menu-item"
+            href="/chi-siamo"
+            language={language}
+            set:html={t.menu2}
+          />
+          <div class="menu-item-tendina">
+            <p
+              class="menu-item text-black"
+              
+              
+              set:html={t.menu3}
+            />
+            <div class="menu-item-dropdown">
+              <div>
+                <Link
+              class="menu-item"
+              href="/progetti"
+              language={language}
+              set:html={t.menu3}
+            />
+            <div class="spacer-8px"></div>
+                <Link
+                  class="menu-item"
+                  href="/cooperativa"
+                  language={language}
+                  set:html={t.menu4}
+                />
+                <div class="spacer-8px"></div>
+                <Link
+                  class="menu-item"
+                  href="/mactardiouf"
+                  language={language}
+                  set:html={t.menu5}
+                />
+              </div>
+            </div>
+          </div>
+          </nav>
+          <img
+            class="hide-on-desktop"
+            src="/resources/img/logo2.svg"
+            alt="logo"
+            loading="lazy"
+          />
+        </div>
+      </header>
+
+      <div class="spacer hide-on-mobile"></div>
+      <div class="spacer"></div>
+
+      <section>
+        <h3 class="section-title" set:html={t.titolo1} />
+        <div class="griglia-principale">
+          <div class="paragrafo1 montserrat">
+            <p set:html={t.paragrafo1} />
+            <img
+            class="min-480-hidden img-griglia"
+            src="/resources/img/foto/mactardiouf.jpg"
+            alt="squadra di thiaroye - mactar diouf"
+          />
+            <div class="spacer-grid"></div>
+            <p set:html={t.paragrafo2} />
+            <div class="spacer-grid"></div>
+            <p set:html={t.paragrafo3} />
+          </div>
+
+          <img
+            class="max-480-hidden img-griglia"
+            src="/resources/img/foto/mactardiouf.jpg"
+            alt="squadra di thiaroye - mactar diouf"
+          />
+        </div>
+      </section>
+    </div>
+
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+
+    <section class="margin-top">
+      <h3 class="section-title" set:html={t.titolo2} />
+      <div class="pl-4 griglia-principale">
+        <div>
+          <img
+            class="img-full"
+            src="/resources/img/foto/gapsel-mactardiouf.jpg"
+            alt="i pannelli solari"
+          />
+        </div>
+        <div class="paragrafo2 montserrat">
+          <p set:html={t.paragrafo4} />
+          
+        </div>
+      </div>
+    </section>
+
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    
+
+    <section>
+      <h3 class="section-title" set:html={t.titolo3}>
+       
+      </h3>
+      <div class="griglia-principale">
+        <div class="paragrafo1 montserrat">
+          <p class="text-white" set:html={t.paragrafo5}>
+            
+          </p>
+        </div>
+        <div class="griglia-interna">
+          <img
+            class="img-griglia"
+            src="/resources/img/foto/scarpe-mactardiouf.jpg"
+            alt="presidente-mbaye-boucountà"
+          />
+          <img
+            class="img-griglia"
+            src="/resources/img/foto/scarpe-2.jpg"
+            alt="presidente-mbaye-boucountà"
+          />
+          <img
+            class="img-griglia"
+            src="/resources/img/foto/scarpe-mactardiouf-noi.jpg"
+            alt="presidente-mbaye-boucountà"
+          />
+          <img
+            class="img-griglia"
+            src="/resources/img/foto/divise-inviate.jpg"
+            alt="presidente-mbaye-boucountà"
+          />
+        </div>
+      </div>
+
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+    </section>
+
+    <p class=" min-480-hidden mini-section-out" set:html={t.paragrafo6}>
+     
+    </p>
+
+    <div id="mini-section">
+      <p class="max-480-hidden mini-section-title" set:html={t.paragrafo6}>
+        
+      </p>
+      <div>
+        <img src="/resources/img/logo_city_angels.jpg" alt="logo city angels" />
+      </div>
+      <div>
+        <img src="/resources/img/logo_ASR.svg" alt="logo Rugby Milano" />
+      </div>
+      <div>
+        <img
+          class="bg-white"
+          src="/resources/img/logo_quarto_raggio.svg"
+          alt="logo quarto raggio"
+        />
+      </div>
+    </div>
+
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+
+    <section class="margin-top">
+      <h3 class="section-title" set:html={t.titolo4} />
+      <div class="pl-4 griglia-principale">
+        <div class="griglia-interna">
+          <img
+            class="img-full"
+            src="/resources/img/foto/beneficenza-mactardiouf.jpg"
+            alt="evento di beneficienza Mactar Diouf"
+          />
+          <img
+          class="img-full"
+          src="/resources/img/foto/beneficenza-mactardiouf-2.jpg"
+          alt="evento di beneficienza Mactar Diouf"
+        />
+        </div>
+        <div class="paragrafo2 montserrat">
+          <p class="text-white" set:html={t.paragrafo7} />
+          
+        </div>
+      </div>
+    </section>
+
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+
+    <section>
+      <h3 class="section-title text-white" set:html={t.titolo5}>
+        
+      </h3>
+      <div class="griglia-principale">
+        <div class="paragrafo1 montserrat">
+          <p class="text-white" set:html={t.paragrafo8}>
+            
+          </p>
+        </div>
+        <div class="griglia-interna">
+          <img
+            class="img-griglia"
+            src="/resources/img/foto/egea-alba.jpg"
+            alt="presidente-mbaye-boucountà"
+          />
+          <img
+            class="img-griglia"
+            src="/resources/img/foto/pacchi-egea.jpg"
+            alt="presidente-mbaye-boucountà"
+          />
+          <img
+            class="img-griglia"
+            src="/resources/img/foto/presidente-egea.jpg"
+            alt="presidente-mbaye-boucountà"
+          />
+          <img
+            class="img-griglia"
+            src="/resources/img/foto/camion-egea.jpg"
+            alt="presidente-mbaye-boucountà"
+          />
+        </div>
+      </div>
+
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+    </section>
+
+    <section class="contacts-container">
+      <div class="contacts flex">
+        <div class="contacts-col contacts-logo w-50">
+          <img
+            class="w-100"
+            src="/resources/img/logo2.svg"
+            loading="lazy"
+            alt="logo"
+          />
+        </div>
+
+        <div class="contacts-col w-50">
+          <h3 set:html={t.titolo1Contatti} />
+          <p class="montserrat"><b>Baye Sa rew</b></p>
+          <p>Gapassel (Dakaar), Senegal</p>
+          <br />
+          <p>
+            <span class="text-yellow">Boucounta</span>:
+            <a href="tel:+393342787131" style="white-space: nowrap;"
+              >+39 334 2787131</a
+            >
+          </p>
+          <p>
+            <span class="text-yellow">Emanuele</span>:
+            <a href="tel:+393714173635" style="white-space: nowrap;"
+              >+39 371 4173635</a
+            >
+          </p>
+          <p>
+            <span class="text-yellow">Simone</span>:
+            <a href="tel:+393714820379" style="white-space: nowrap;"
+              >+39 371 4820379</a
+            >
+          </p>
+          <br />
+          <p>
+            <a href="mailto:bayesarew.coop@gmail.com"
+              >bayesarew.coop@gmail.com</a
+            >
+          </p>
+        </div>
+        <div class="contacts-col w-50">
+          <h3 set:html={t.titolo2Contatti} />
+          <div class="social-icons">
+            <div>
+              <a href="https://www.instagram.com/baye_sa_rew/" target="_blank">
+                <img
+                  class="w-100"
+                  src="/resources/img/social/ig.svg"
+                  alt="ig-social-icon"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+            <div>
+              <a
+                href="https://www.facebook.com/Baye-Sa-Rew-Villaggio-di-Gapassel-103300722295945/"
+                target="_blank"
+              >
+                <img
+                  class="w-100"
+                  src="/resources/img/social/fb.svg"
+                  alt="fb-social-icon"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

@@ -16,6 +16,8 @@ twitterContent: Baye Sa Rew&colon; Sviluppo Agricolo e Sociale in Senegal
 menu1: HOME
 menu2: CHI SIAMO
 menu3: PROGETTI
+menu4: COOPERATIVA
+menu5: SCUOLA CALCIO
 
 tastoDona: DONA
 
